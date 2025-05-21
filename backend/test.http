@@ -1,0 +1,22 @@
+### Fetch Doctor Upcoming Appointments
+GET http://localhost:5000/api/doctor/appointments/dashboard/upcoming
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjdjODM5OTY2MzFjM2E2ZGQwMGFlZSIsImlhdCI6MTc0NTMyODU1OSwiZXhwIjoxNzQ1NDE0OTU5fQ.jzUmjq_s71E90qDsljx7jAW3DXaevVIlJgIhYtfAGS8
+
+
+### Get all prescriptions for the logged-in patient
+GET http://localhost:5000/api/patient/prescriptions/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjk0NDY1NGNlMDgzYWFhZDMyZjhmMyIsImlhdCI6MTc0NTMyODYwMCwiZXhwIjoxNzQ1NDE1MDAwfQ.97fv8dfQaOjwyAmIjHdeJB3_xgosjQW-i2ac-dnFx_Y
+
+
+
+### Get Past Appointments
+GET http://localhost:5000/api/patient/appointments/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjk0NDY1NGNlMDgzYWFhZDMyZjhmMyIsImlhdCI6MTc0NTMyODYwMCwiZXhwIjoxNzQ1NDE1MDAwfQ.97fv8dfQaOjwyAmIjHdeJB3_xgosjQW-i2ac-dnFx_Y
+
+### Get Upcoming Appointments
+GET http://localhost:5000/api/patient/appointments/upcoming
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjk0NDY1NGNlMDgzYWFhZDMyZjhmMyIsImlhdCI6MTc0NTMyODYwMCwiZXhwIjoxNzQ1NDE1MDAwfQ.97fv8dfQaOjwyAmIjHdeJB3_xgosjQW-i2ac-dnFx_Y
+
+### Get All Prescriptions
+GET http://localhost:5000/api/patient/prescriptions/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjk0

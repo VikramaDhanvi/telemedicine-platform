@@ -1,0 +1,118 @@
+@startuml
+
+entity "Admin" as admin {
+  * _id : ObjectId
+  --
+  name : String
+  email : String
+  password : String
+  role : String = "admin"
+}
+
+entity "Doctor" as doctor {
+  * _id : ObjectId
+  --
+  name : String
+  email : String
+  password : String      ' <- Viewable by admin
+  specialization : String
+  licenseNo : String
+  isApproved : Boolean
+  createdAt : Date
+}
+
+entity "Patient" as patient {
+  * _id : ObjectId
+  --
+  name : String
+  email : String
+  password : String      ' <- Viewable by admin
+  gender : String
+  dateOfBirth : Date
+  createdAt : Date
+}
+
+entity "Appointment" as appointment {
+  * _id : ObjectId
+  --
+  patientId : ObjectId (FK)
+  doctorId : ObjectId (FK)
+  date : Date
+  time : String
+  status : Enum
+  symptoms : String
+  notes : String
+  createdAt : Date
+}
+
+entity "Prescription" as prescription {
+  * _id : ObjectId
+  --
+  appointmentId : ObjectId (FK)
+  doctorId : ObjectId (FK)
+  patientId : ObjectId (FK)
+  medications : Array
+  advice : String
+  createdAt : Date
+}
+
+entity "Payment" as payment {
+  * _id : ObjectId
+  --
+  appointmentId : ObjectId (FK)
+  patientId : ObjectId (FK)
+  amount : Number
+  method : Enum
+  status : Enum
+  transactionId : String
+  createdAt : Date
+}
+
+entity "DoctorApplication" as application {
+  * _id : ObjectId
+  --
+  name : String
+  email : String
+  qualifications : String
+  specialization : String
+  experienceYears : Number
+  licenseDocURL : String
+  status : Enum
+  submittedAt : Date
+  reviewedAt : Date
+}
+
+entity "SymptomLog" as symptoms {
+  * _id : ObjectId
+  --
+  patientId : ObjectId (FK)
+  symptoms : Array
+  submittedAt : Date
+  suggestions : String
+}
+
+' Relationships
+
+doctor ||--o{ appointment : "has"
+patient ||--o{ appointment : "books"
+
+doctor ||--o{ prescription : "writes"
+patient ||--o{ prescription : "receives"
+
+appointment ||--|| prescription : "results in"
+appointment ||--|| payment : "linked with"
+
+patient ||--o{ payment : "makes"
+patient ||--o{ symptoms : "logs"
+
+application ||--|| doctor : "applies as"
+
+' Admin Monitoring Access
+admin ||--o{ doctor : "monitors"
+admin ||--o{ patient : "monitors"
+admin ||--o{ appointment : "monitors"
+admin ||--o{ prescription : "monitors"
+admin ||--o{ payment : "monitors"
+admin ||--o{ application : "reviews"
+
+@enduml

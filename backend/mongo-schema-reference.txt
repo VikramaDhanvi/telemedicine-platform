@@ -1,0 +1,114 @@
+// ====== Admin Collection ======
+{
+  "_collection": "admins",
+  "document": {
+    "_id": "ObjectId",
+    "name": "String",
+    "email": "String",
+    "password": "String",
+    "role": "String" // default: "admin"
+  }
+}
+
+// ====== Doctor Collection ======
+{
+  "_collection": "doctors",
+  "document": {
+    "_id": "ObjectId",
+    "name": "String",
+    "email": "String",
+    "password": "String",
+    "specialization": "String",
+    "licenseNo": "String",
+    "isApproved": "Boolean",
+    "createdAt": "Date"
+  }
+}
+
+// ====== Patient Collection ======
+{
+  "_collection": "patients",
+  "document": {
+    "_id": "ObjectId",
+    "name": "String",
+    "email": "String",
+    "password": "String",
+    "gender": "String",
+    "dateOfBirth": "Date",
+    "createdAt": "Date"
+  }
+}
+
+// ====== Appointment Collection ======
+{
+  "_collection": "appointments",
+  "document": {
+    "_id": "ObjectId",
+    "patientId": "ObjectId",   // ref: patients._id
+    "doctorId": "ObjectId",    // ref: doctors._id
+    "date": "Date",
+    "time": "String",
+    "status": "Scheduled | Completed | Cancelled",
+    "symptoms": "String",
+    "notes": "String",
+    "createdAt": "Date"
+  }
+}
+
+// ====== Prescription Collection ======
+{
+  "_collection": "prescriptions",
+  "document": {
+    "_id": "ObjectId",
+    "appointmentId": "ObjectId", // ref: appointments._id
+    "doctorId": "ObjectId",      // ref: doctors._id
+    "patientId": "ObjectId",     // ref: patients._id
+    "medications": [ "String" ],
+    "advice": "String",
+    "createdAt": "Date"
+  }
+}
+
+// ====== Payment Collection ======
+{
+  "_collection": "payments",
+  "document": {
+    "_id": "ObjectId",
+    "appointmentId": "ObjectId", // ref: appointments._id
+    "patientId": "ObjectId",     // ref: patients._id
+    "amount": "Number",
+    "method": "Card | UPI | Wallet | Cash",
+    "status": "Success | Pending | Failed",
+    "transactionId": "String",
+    "createdAt": "Date"
+  }
+}
+
+// ====== Doctor Application Collection ======
+{
+  "_collection": "doctor_applications",
+  "document": {
+    "_id": "ObjectId",
+    "name": "String",
+    "email": "String",
+    "qualifications": "String",
+    "specialization": "String",
+    "experienceYears": "Number",
+    "licenseDocURL": "String",
+    "status": "Pending | Approved | Rejected",
+    "submittedAt": "Date",
+    "reviewedAt": "Date"
+  }
+}
+
+// ====== Symptom Log Collection ======
+{
+  "_collection": "symptom_logs",
+  "document": {
+    "_id": "ObjectId",
+    "patientId": "ObjectId",     // ref: patients._id
+    "symptoms": [ "String" ],
+    "submittedAt": "Date",
+    "suggestions": "String"
+  }
+}
